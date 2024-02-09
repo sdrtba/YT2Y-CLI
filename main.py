@@ -11,7 +11,7 @@ def download(video: YouTube) -> str:
 
 
 def get_target(filename: str) -> str:
-    token = "y0_AgAAAABhcb3WAAG8XgAAAADg8YLp8YmhqzOQTT6adR-8RdZ-NriSgXc"
+    token = ""
     headers = {"Authorization": f"Bearer {token}"}
     url = f"https://music.yandex.ru/handlers/ugc-upload.jsx?kind=3&filename={''.join(filename.split('.')[:-1])}"
     return loads(requests.get(url, headers=headers).text).get("post-target")
@@ -37,5 +37,4 @@ def main(url: str = "https://www.youtube.com/playlist?list=PLcLWzrwuuZhNet5VdtPJ
 
 
 if __name__ == "__main__":
-    url = input("url: ")
-    main()
+    main(input("url: "))
