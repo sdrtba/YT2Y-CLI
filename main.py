@@ -12,10 +12,10 @@ def upload(filename, target):
 
 
 def get_target(filename):
-    filename = ''.join(filename.split('\\')[1].split('.')[:-1])
+    filename = ''.join(filename.split('\\')[1:].split('.')[:-1])
     token = "" # put the yandex-music token
     headers = {"Authorization": f"Bearer {token}"}
-    url = f"https://music.yandex.ru/handlers/ugc-upload.jsx?kind=3&filename={filename}" # kind=3 is a favourite`s id playlist
+    url = f"https://music.yandex.ru/handlers/ugc-upload.jsx?kind={kind}&filename={filename}" # kind=3 is a favourite`s id playlist
 
     print(filename)
     return loads(requests.get(url, headers=headers).text).get("post-target")
@@ -33,7 +33,7 @@ def progress_hook(d):
         print("-----------------------------------------------")
 
 
-def download(url):
+def download():
 
     ydl_opts = {
         'outtmpl': '%(title)s.%(ext)s', # output template to name files as <title>.<ext>
@@ -67,4 +67,9 @@ if __name__ == '__main__':
 
     url = input('link (pass for default): ')
     url = url if url != '' else "https://www.youtube.com/playlist?list=PLcLWzrwuuZhNet5VdtPJBV-K0WDcRSvhJ"
-    download(url)
+
+    kind = input('kind (pass for default): ')
+    kind = kind if kind != '' else 3
+
+    download()
+
