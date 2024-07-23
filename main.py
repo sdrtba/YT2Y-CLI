@@ -12,7 +12,7 @@ def upload(filename, target):
 
 
 def get_target(filename):
-    filename = ''.join(filename.split('\\')[1:].split('.')[:-1])
+    filename = ''.join(''.join(filename.split('\\')[1:]).split('.')[:-1])
     token = "" # put the yandex-music token
     headers = {"Authorization": f"Bearer {token}"}
     url = f"https://music.yandex.ru/handlers/ugc-upload.jsx?kind={kind}&filename={filename}" # kind=3 is a favourite`s id playlist
