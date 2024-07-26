@@ -39,10 +39,14 @@ def download():
         'outtmpl': '%(title)s.%(ext)s', # output template to name files as <title>.<ext>
         'paths': {'home': dir}, # temp and main files in one folder
         'format': 'ba[ext=m4a]', # bestaudio.m4a
-        'retries': 10,
+        'retries': 5,
         'quiet': True, # without logs
         'progress': True, # show progress bar
         'skip_unavailable_fragments': True,
+	    'noincludeunavailablevideos': True,
+	    'ignoreerrors': True,
+	    'no_warnings': True,
+	    'playliststart': skip,
 
         'progress_hooks': [progress_hook],
     }
@@ -55,21 +59,25 @@ def download():
 
     clear()
 
+
 def clear():
     try:
         shutil.rmtree(dir)
     except:
         pass
 
+
 if __name__ == '__main__':
     dir = 'output'
     clear()
 
-    url = input('link (pass for default): ')
+    url = input('link (pass for https://www.youtube.com/playlist?list=PLcLWzrwuuZhNet5VdtPJBV-K0WDcRSvhJ): ')
     url = url if url != '' else "https://www.youtube.com/playlist?list=PLcLWzrwuuZhNet5VdtPJBV-K0WDcRSvhJ"
 
-    kind = input('kind (pass for default): ')
+    kind = input('kind (pass for 3): ')
     kind = kind if kind != '' else 3
 
-    download()
+    skip = input('skip (pass for 0): ')
+    skip = skip if skip != '' else 3
 
+    download()
