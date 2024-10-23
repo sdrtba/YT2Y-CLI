@@ -78,6 +78,6 @@ if __name__ == '__main__':
     kind = kind if kind != '' else 3
 
     skip = input('skip (pass for 0): ')
-    skip = skip if skip != '' else 3
+    skip = skip if skip != '' else 0
 
     download()
